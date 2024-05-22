@@ -11,11 +11,17 @@ jobs:
   notify_slack:
     runs-on: windows-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        uses: rtCamp/action-slack-notify@v2
         with:
-          status: ${{ job.status }}
-          author_name: ${{ github.actor }}
-          fields: repo,message,commit,author,action
+          message: |
+            Job Status: ${{ job.status }}
+            Author: ${{ github.actor }}
+            Event: ${{ github.event_name }}
+            Repository: ${{ github.repository }}
+            Commit Message: ${{ github.event.head_commit.message }}
