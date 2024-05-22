@@ -15,13 +15,25 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        uses: 8398a7/action-slack@v3
         with:
-          message: |
-            Job Status: ${{ job.status }}
-            Author: ${{ github.actor }}
-            Event: ${{ github.event_name }}
-            Repository: ${{ github.repository }}
-            Commit Message: ${{ github.event.head_commit.message }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          status: ${{ job.status }}
+          fields: commit,repo,ref,author
+          author_name: ${{ github.actor }}
+          custom_payload: |
+            {
+              "text": "*${{ github.event_name }}* event in repo *${{ github.repository }}* by *${{ github.actor }}*",
+              "attachments": [
+                {
+                  "color": "good",
+                  "fields": [
+                    {
+                      "title": "Commit Message",
+                      "value": "${{ github.event.head_commit.message }}",
+                      "short": false
+                    }
+                  ]
+                }
+              ]
+            }
