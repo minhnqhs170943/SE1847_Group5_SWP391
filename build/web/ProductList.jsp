@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -301,42 +303,56 @@
                     <section class="lattest-product-area pb-40 category-list">
                         <div class="row">
                             <!-- single product -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product">
-                                    <img class="img-fluid" src="img/product/p1.jpg" alt="">
-                                    <div class="product-details">
-                                        <h6>addidas New Hammer sole
-                                            for Sports person</h6>
-                                        <div class="price">
-                                            <h6>$150.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                        <div class="prd-bottom">
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+      <c:forEach items="${productList}" var="o">
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <img class="img-fluid" src="${o.url_img1}" alt="">
+            <div class="product-details">
+                <h6>${o.name}</h6>
+                <div class="price">
+                    <h6>${o.brandID}</h6>
+                    <p>${o.price}</p> 
+                </div>
+                <div class="prd-bottom">
+                    <a href="" class="social-info">
+                        <span class="ti-bag"></span>
+                        <p class="hover-text">cart</p>
+                    </a>
+                    <a href="" class="social-info">
+                        <span class="lnr lnr-move"></span>
+                        <p class="hover-text">detail</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:forEach>
 
-                                            <a href="" class="social-info">
-                                                <span class="ti-bag"></span>
-                                                <p class="hover-text">add to bag</p>
-                                            </a>
-                                            <a href="" class="social-info">
-                                                <span class="lnr lnr-heart"></span>
-                                                <p class="hover-text">Wishlist</p>
-                                            </a>
-                                            <a href="" class="social-info">
-                                                <span class="lnr lnr-sync"></span>
-                                                <p class="hover-text">compare</p>
-                                            </a>
-                                            <a href="" class="social-info">
-                                                <span class="lnr lnr-move"></span>
-                                                <p class="hover-text">view more</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <!-- single product -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product">
-                                    <img class="img-fluid" src="img/product/p2.jpg" alt="">
+                                    <img class="img-fluid" src="https://file.hstatic.net/1000370129/file/iphone-11-bao-nhieu-gb_8291ea6f6af940b29a4f0d591419f95b.jpg" alt="">
                                     <div class="product-details">
                                         <h6>addidas New Hammer sole
                                             for Sports person</h6>
@@ -366,6 +382,13 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <!-- single product -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product">
