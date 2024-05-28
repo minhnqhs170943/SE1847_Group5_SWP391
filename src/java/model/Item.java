@@ -10,24 +10,24 @@ package model;
  */
 public class Item {
 
-    private Product product;
+    private product product;
     private int quantity;
     private double price;
 
     public Item() {
     }
 
-    public Item(Product product, int quantity, double price) {
+    public Item(product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Product getProduct() {
+    public product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(product product) {
         this.product = product;
     }
 

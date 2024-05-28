@@ -4,16 +4,9 @@
  */
 package dal;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import model.Category;
-import model.Product;
 
 public class DBContext {
 
@@ -28,8 +21,8 @@ public class DBContext {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
+            System.out.println("Lỗi khi thiết lập kết nối: " + ex.getMessage());
         }
     }
-    
+
 }

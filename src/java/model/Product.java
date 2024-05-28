@@ -12,41 +12,51 @@ import java.util.Locale;
  *
  * @author LAPTOP ASUS
  */
-public class Product {
+public class product {
+
     private int id;
     private String name;
     private String description;
     private int price;
+    private int quality;
+    private String url_img1;
+    private String url_img2;
+    private String url_img3;
+    private String url_img4;
+    private String url_img5;
+    private int categoryID;
+    private int brandID;
+    private String code;
     private Date releaseDate;
-    private int quantity;
-    private String url_img1, url_img2, url_img3, url_img4, url_img5;
-    private int categoryId;
 
-    public Product() {
+    public product() {
+
     }
 
-    public Product(int id, String name, String description, int price, Date releaseDate, int quantity, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5, int categoryId) {
+    public product(int id, String name, String description, int price, int quality, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5, int categoryID, int brandID, String code, Date date) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.releaseDate = releaseDate;
-        this.quantity = quantity;
+        this.quality = quality;
         this.url_img1 = url_img1;
         this.url_img2 = url_img2;
         this.url_img3 = url_img3;
         this.url_img4 = url_img4;
         this.url_img5 = url_img5;
-        this.categoryId = categoryId;
+        this.categoryID = categoryID;
+        this.brandID = brandID;
+        this.code = code;
+        this.releaseDate = date;
     }
-    
-    public Product(int id, String name, String description, int price, Date releaseDate, int quantity, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5) {
+
+    public product(int id, String name, String description, int price, Date releaseDate, int quantity, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.releaseDate = releaseDate;
-        this.quantity = quantity;
+        this.quality = quantity;
         this.url_img1 = url_img1;
         this.url_img2 = url_img2;
         this.url_img3 = url_img3;
@@ -78,7 +88,7 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -86,20 +96,12 @@ public class Product {
         this.price = price;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public int getQuality() {
+        return quality;
     }
 
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuality(int quality) {
+        this.quality = quality;
     }
 
     public String getUrl_img1() {
@@ -142,22 +144,46 @@ public class Product {
         this.url_img5 = url_img5;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public int getBrandID() {
+        return brandID;
+    }
+
+    public void setBrandID(int brandID) {
+        this.brandID = brandID;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Date getDate() {
+        return releaseDate;
+    }
+
+    public void setDate(Date date) {
+        this.releaseDate = date;
     }
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", releaseDate=" + releaseDate + ", quantity=" + quantity + ", url_img1=" + url_img1 + ", url_img2=" + url_img2 + ", url_img3=" + url_img3 + ", url_img4=" + url_img4 + ", url_img5=" + url_img5 + '}';
+        return "product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", quality=" + quality + ", url_img1=" + url_img1 + ", url_img2=" + url_img2 + ", url_img3=" + url_img3 + ", url_img4=" + url_img4 + ", url_img5=" + url_img5 + ", categoryID=" + categoryID + ", brandID=" + brandID + ", code=" + code + ", date=" + releaseDate + '}';
     }
-    
+
     public String getFormattedPrice() {
-        NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
-        return formatter.format(price);
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
+        return numberFormat.format(price) + " VNĐ";
     }
 
 }

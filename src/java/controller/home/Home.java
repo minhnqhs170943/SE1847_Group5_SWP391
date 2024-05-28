@@ -5,6 +5,7 @@
 package controller.home;
 
 import dal.homepageDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
-import model.Product;
+import model.product;
 
 /**
  *
@@ -33,17 +34,7 @@ public class Home extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        homepageDAO dao = new homepageDAO();
-        List<Category> listC = dao.getAllCategory();
-        List<Product> listA = dao.getNewApple();
-        List<Product> listS = dao.getNewSamsung();
-        List<Product> listL = dao.getProductGaming();
 
-        request.setAttribute("listC", listC);
-        request.setAttribute("listA", listA);
-        request.setAttribute("listS", listS);
-        request.setAttribute("listL", listL);
-        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,7 +49,18 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        homepageDAO dao = new homepageDAO();
+        List<product> listA = dao.getNewApple();
+        List<product> listS = dao.getNewSamsung();
+        List<product> listL = dao.getProductGaming();
+        List<Category> listC = dao.getAllCategory();
+
+        request.setAttribute("listC", listC);
+        request.setAttribute("listA", listA);
+        request.setAttribute("listS", listS);
+        request.setAttribute("listL", listL);
+        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
+
     }
 
     /**

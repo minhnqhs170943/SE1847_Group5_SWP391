@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
-import model.Product;
+
 
 /**
  *
@@ -62,7 +62,7 @@ public class Header extends HttpServlet {
 
         request.setAttribute("listC", listC);
 
-        request.getRequestDispatcher("Header.jsp").forward(request, response);
+        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     } 
 
     /** 

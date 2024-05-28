@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
-import model.Product;
+import model.product;
 
 /**
  *
@@ -35,7 +35,7 @@ public class homepageDAO extends DBContext {
     }
 
     //lay 8 san pham apple
-    public List<Product> getNewApple() {
+    public List<product> getNewApple() {
         String sql = "SELECT *\n"
                 + "FROM (\n"
                 + "    SELECT TOP 8 *\n"
@@ -44,12 +44,12 @@ public class homepageDAO extends DBContext {
                 + "    ORDER BY release_date DESC\n"
                 + ") AS recent_products\n"
                 + "ORDER BY id ASC;";
-        List<Product> list = new ArrayList<>();
+        List<product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1),
+                list.add(new product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(5),
@@ -69,7 +69,7 @@ public class homepageDAO extends DBContext {
     }
 
     //lay 8 san pham samsung
-    public List<Product> getNewSamsung() {
+    public List<product> getNewSamsung() {
         String sql = "SELECT *\n"
                 + "FROM (\n"
                 + "    SELECT TOP 8 *\n"
@@ -78,12 +78,12 @@ public class homepageDAO extends DBContext {
                 + "    ORDER BY release_date DESC\n"
                 + ") AS recent_products\n"
                 + "ORDER BY id ASC;";
-        List<Product> list = new ArrayList<>();
+        List<product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1),
+                list.add(new product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(5),
@@ -102,17 +102,17 @@ public class homepageDAO extends DBContext {
     }
 
     //lay 9 san pham laptop gaming
-    public List<Product> getProductGaming() {
+    public List<product> getProductGaming() {
         String sql = "SELECT TOP 9 *\n"
                 + "FROM product\n"
                 + "WHERE categoryID = 2\n"
                 + "  AND CAST(id AS VARCHAR) LIKE '9%';";
-        List<Product> list = new ArrayList<>();
+        List<product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1),
+                list.add(new product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(5),
