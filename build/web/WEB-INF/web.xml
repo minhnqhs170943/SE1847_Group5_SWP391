@@ -4,5 +4,20 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
 	 version="6.0">
-
+	<servlet>
+        	<servlet-name>Home</servlet-name>
+        	<servlet-class>controller.home.Home</servlet-class>
+   	</servlet>
+    	<servlet>
+        	<servlet-name>Header</servlet-name>
+        	<servlet-class>controller.home.Header</servlet-class>
+   	</servlet>
+    	<servlet-mapping>
+        	<servlet-name>Home</servlet-name>
+        	<url-pattern>/home</url-pattern>
+    	</servlet-mapping>
+    	<servlet-mapping>
+        	<servlet-name>Header</servlet-name>
+        	<url-pattern>/header</url-pattern>
+    	</servlet-mapping>
 </web-app>
