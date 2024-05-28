@@ -1,0 +1,40 @@
+name: Git Notifications
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, closed, reopened, edited, assigned, unassigned, labeled, unlabeled]
+
+jobs:
+  notify_slack:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send Slack notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: commit,repo,ref,author
+          author_name: ${{ github.actor }}
+          custom_payload: |
+            {
+              "text": "*${{ github.event_name }}* event in repo *${{ github.repository }}* by *${{ github.actor }}*",
+              "attachments": [
+                {
+                  "color": "good",
+                  "fields": [
+                    {
+                      "title": "Commit Message",
+                      "value": "${{ github.event.head_commit.message }}",
+                      "short": false
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

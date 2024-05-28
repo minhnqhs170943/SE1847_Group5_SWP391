@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/dal/DBContext.java</file>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/dal/productListDAO.java</file>
             <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/web/HomePage.jsp</file>
             <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/web/Header.jsp</file>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/controller/productList.java</file>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/dal/homepageDAO.java</file>
             <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/controller/home/Header.java</file>
             <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/controller/home/Home.java</file>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/src/java/controller/categoryList.java</file>
+            <file>file:/D:/SWP391_Project/Project/Electronic_Shopping/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
