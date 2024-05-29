@@ -73,34 +73,34 @@
                 </div>
                 <div class="col-md-6">
                     <h2 class="mb-4">REGISTRATION FORM</h2>
-                    <form>
+                    <form action="register" method="post">
                         <div class="form-group">
                             <label for="name">Họ và tên</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Địa chỉ</label>
-                            <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" required>
                         </div>
                         <div class="form-group">
                             <label for="dob">Ngày tháng năm sinh</label>
-                            <input type="date" class="form-control" id="dob">
+                            <input type="date" class="form-control" id="dob" name="dob" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
                         </div>
                         <div class="form-group">
                             <label for="confirm-password">Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu">
+                            <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
                         </div>
                         <div class="form-group text-right">
                             <button type="reset" class="btn btn-secondary mr-2">Reset Form</button>

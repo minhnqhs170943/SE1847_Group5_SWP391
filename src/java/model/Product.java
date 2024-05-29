@@ -10,7 +10,7 @@ import java.util.Locale;
 
 /**
  *
- * @author LAPTOP ASUS
+ * @author tran tung
  */
 public class product {
 
@@ -33,7 +33,7 @@ public class product {
 
     }
 
-    public product(int id, String name, String description, int price, int quality, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5, int categoryID, int brandID, String code, Date date) {
+    public product(int id, String name, String description, int price, int quality, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5, int categoryID, int brandID, String code, Date releaseDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -47,16 +47,16 @@ public class product {
         this.categoryID = categoryID;
         this.brandID = brandID;
         this.code = code;
-        this.releaseDate = date;
+        this.releaseDate = releaseDate;
     }
 
-    public product(int id, String name, String description, int price, Date releaseDate, int quantity, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5) {
+    public product(int id, String name, String description, int price, Date releaseDate, int quality, String url_img1, String url_img2, String url_img3, String url_img4, String url_img5) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.releaseDate = releaseDate;
-        this.quality = quantity;
+        this.quality = quality;
         this.url_img1 = url_img1;
         this.url_img2 = url_img2;
         this.url_img3 = url_img3;
@@ -185,5 +185,4 @@ public class product {
         NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
         return numberFormat.format(price) + " VNĐ";
     }
-
 }
