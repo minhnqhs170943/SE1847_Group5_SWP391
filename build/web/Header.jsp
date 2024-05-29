@@ -57,7 +57,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="HomePage.jsp">Home</a></li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Category</a>
@@ -72,9 +72,9 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Account</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">User Profile</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Change Password</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="Login.jsp" onclick="show()">Login</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="UserProfile.jsp">User Profile</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="ChangePassword.jsp">Change Password</a></li>
                                     </ul>
                                 </li>
                             </ul>
