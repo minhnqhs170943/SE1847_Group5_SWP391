@@ -4,28 +4,20 @@
  */
 package controller;
 
-
-import dal.UserProfileDAO;
-
+import dal.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import model.Customer;
-
-import model.UserProfile;
-
 
 /**
  *
  * @author dohoa
  */
-@WebServlet(name = "UserProfileServlet", urlPatterns = {"/UserProfileServlet"})
-public class UserProfileServlet extends HttpServlet {
+public class UpdateCustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +36,10 @@ public class UserProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserProfileServlet</title>");            
+            out.println("<title>Servlet UpdateCustomerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateCustomerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,21 +58,7 @@ public class UserProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-       
-        // Assuming the customer ID is stored in the session
-        Integer customerID = (Integer) request.getSession().getAttribute("customerID");
-
-        UserProfile userProfile = null;
-        if (customerID != null) {
-            UserProfileDAO userProfileDAO = new UserProfileDAO();
-            userProfile = userProfileDAO.getUserProfile(customerID);
-        }
-        
-        request.setAttribute("userProfile", userProfile);
-        request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
     }
-    
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -93,11 +71,38 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve form parameters
-            
-    
-    
+        try {
+            // Retrieve form parameters
+            int accountID = Integer.parseInt(request.getParameter("accountID"));
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String DOB = request.getParameter("DOB");
+            int addressID = Integer.parseInt(request.getParameter("addressID"));
+            String gmail = request.getParameter("gmail");
+
+            // Create a Customer object with the retrieved parameters
+            Customer customer = new Customer(accountID, firstName, lastName, DOB, addressID, gmail);
+
+            // Create a CustomerDAO object and attempt to update the customer
+            CustomerDAO customerDAO = new CustomerDAO();
+            boolean updateStatus = customerDAO.updateCustomer(customer);
+
+            // Set the message attribute based on the update status
+            if (updateStatus) {
+                request.setAttribute("message", "Customer information updated successfully.");
+            } else {
+                request.setAttribute("message", "Failed to update customer information.");
+            }
+
+            // Forward the request to updateResult.jsp
+            request.getRequestDispatcher("updateResult.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("message", "An error occurred: " + e.getMessage());
+            request.getRequestDispatcher("updateResult.jsp").forward(request, response);
+        }
     }
+
     /**
      * Returns a short description of the servlet.
      *

@@ -189,13 +189,12 @@
                                             <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" value="${userProfile.description}, ${userProfile.commune}, ${userProfile.district}, ${userProfile.city}" readonly>
                                         </div>
                                         </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
+                                        </c:otherwise>
+                                        </c:choose>
                                         <div class="col-md-12 form-group text-center">
-                                    <button type="button" class="primary-btn" id="editBtn" onclick="enableEdit()">Edit Profile</button>
-                                    <button type="submit" class="primary-btn" id="saveBtn" style="display:none;">Save Changes</button>
+                                       <button><a class="nav-link" href="UpdateProfile.jsp">Edit Profile</a></button>
                                 </div>
-                                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -210,15 +209,7 @@
         <%@include file="Footer.jsp" %>
         <!-- End footer Area -->
 
-        <script>
-            function enableEdit() {
-                document.getElementById('username').readOnly = false;
-                document.getElementById('email').readOnly = false;
-                document.getElementById('phone').readOnly = false;
-                document.getElementById('address').readOnly = false;
-                document.getElementById('saveBtn').style.display = 'inline-block';
-            }
-        </script>
+       
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

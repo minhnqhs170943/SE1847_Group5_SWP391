@@ -72,7 +72,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Account</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="Login.jsp" onclick="show()">Login</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="Login.jsp" >Login</a></li>
                                         <li class="nav-item"><a class="nav-link" href="UserProfile.jsp">User Profile</a></li>
                                         <li class="nav-item"><a class="nav-link" href="ChangePassword.jsp">Change Password</a></li>
                                     </ul>
