@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/changePassword")
-public class ChangePasswordServlet extends HttpServlet {
+public class changePassword extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,10 +21,10 @@ public class ChangePasswordServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username"); // Assume username is stored in session
+        String username = (String) session.getAttribute("username"); 
 
         if (username == null || username.isEmpty()) {
-            response.sendRedirect("Login.jsp"); // Redirect to login if user is not authenticated
+            response.sendRedirect("Login.jsp"); 
             return;
         }
 
@@ -42,10 +42,6 @@ public class ChangePasswordServlet extends HttpServlet {
                 try (ResultSet rs = checkPasswordStmt.executeQuery()) {
                     if (rs.next()) {
                         String storedPassword = rs.getString("password");
-                        // Debug statements to log passwords
-                        System.out.println("Stored Password: " + storedPassword);
-                        System.out.println("Current Password: " + currentPassword);
-
                         if (!storedPassword.equals(currentPassword)) {
                             request.setAttribute("errorMessage", "Current password is incorrect!");
                             request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
