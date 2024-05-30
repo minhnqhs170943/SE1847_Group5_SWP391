@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -59,7 +60,7 @@
             label {
                 font-weight: bold;
             }
-            input[type="password"] {
+            input {
                 width: 100%;
                 padding: 10px;
                 margin-bottom: 15px;
@@ -193,20 +194,50 @@
         <!-- End banner Area -->
 
         <!--================Change Password =================-->
+        <!--================Forms =================-->
         <div class="container-change">
-            <h2>Change Password</h2>
-            <form id="changePasswordForm">
-                <label for="currentPassword">Current Password</label>
-                <input type="password" id="currentPassword" name="currentPassword" required>
-                <label for="newPassword">New Password</label>
-                <input type="password" id="newPassword" name="newPassword" required>
-                <label for="confirmPassword">Confirm New Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <div class="col-md-12 form-group text-center">
-                    <button type="submit" class="primary-btn">Save Changes</button>
-                </div>
-            </form>
+            <c:choose>
+                <c:when test="${action == 'changePassword'}">
+                    <h2>Change Password</h2>
+                    <form id="changePasswordForm" class="form-content">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required>
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <div class="col-md-12 form-group text-center">
+                            <button type="submit" class="primary-btn">Save Changes</button>
+                        </div>
+                    </form>
+                </c:when>
+                <c:when test="${action == 'enterOtp'}">
+                    <h2>Enter OTP</h2>
+                    <form id="enterOtpForm" class="form-content">
+                        <label for="otp">Enter OTP</label>
+                        <input type="text" id="otp" name="otp" required>
+                        <div class="col-md-12 form-group text-center">
+                            <button type="submit" class="primary-btn">Submit OTP</button>
+                        </div>
+                    </form>
+                </c:when>
+                <c:when test="${action == 'enterEmail'}">
+                    <h2>Enter Email</h2>
+                    <form id="enterEmailForm" class="form-content">
+                        <label for="email">Enter Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="col-md-12 form-group text-center">
+                            <button type="submit" class="primary-btn">Submit Email</button>
+                        </div>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <h2>Unknown Action</h2>
+                    <p>Please specify a valid action parameter.</p>
+                </c:otherwise>
+            </c:choose>
         </div>
+        <!--================Forms =================-->
         <!--================Change Password =================-->
 
         <!-- start footer Area -->
@@ -289,22 +320,51 @@
         </footer>
         <!-- End footer Area -->
 
+        <!--        <script>
+                    document.getElementById("changePasswordForm").addEventListener("submit", function (event) {
+                        event.preventDefault();
+        
+                        var currentPassword = document.getElementById("currentPassword").value;
+                        var newPassword = document.getElementById("newPassword").value;
+                        var confirmPassword = document.getElementById("confirmPassword").value;
+        
+                        // Kiểm tra xác nhận mật khẩu mới
+                        if (newPassword !== confirmPassword) {
+                            alert("New password and confirm password do not match!");
+                            return;
+                        }
+        
+                        alert("Password changed successfully!");
+        
+                    });
+                </script>-->
         <script>
-            document.getElementById("changePasswordForm").addEventListener("submit", function (event) {
+            document.getElementById("changePasswordForm")?.addEventListener("submit", function (event) {
                 event.preventDefault();
-
                 var currentPassword = document.getElementById("currentPassword").value;
                 var newPassword = document.getElementById("newPassword").value;
                 var confirmPassword = document.getElementById("confirmPassword").value;
 
-                // Kiểm tra xác nhận mật khẩu mới
                 if (newPassword !== confirmPassword) {
                     alert("New password and confirm password do not match!");
                     return;
                 }
 
                 alert("Password changed successfully!");
+            });
 
+            document.getElementById("enterOtpForm")?.addEventListener("submit", function (event) {
+                event.preventDefault();
+                var otp = document.getElementById("otp").value;
+
+                alert("OTP submitted successfully!");
+            });
+
+            document.getElementById("enterEmailForm")?.addEventListener("submit", function (event) {
+                event.preventDefault();
+                var email = document.getElementById("email").value;
+
+                alert("Email submitted successfully!");
             });
         </script>
 

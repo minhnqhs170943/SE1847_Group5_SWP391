@@ -49,7 +49,7 @@
                             <div class="hover">
                                 <h4>New to our website?</h4>
                                 <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                                <a class="primary-btn" href="Register.jsp">Create an Account</a>
+                                <a class="primary-btn" href="registration.html">Create an Account</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,8 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <button type="submit" value="submit" class="primary-btn">Log In</button>
-                                    <a href="forgot-password.html">Forgot Password?</a>
+                                    <a type="button" style="color: #ffffff" class="btn btn-danger" href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:9999/Electronic_Shopping/LoginGoogleHandler&response_type=code&client_id=851168952053-nvouum8bkntt6sdh2qolcsip3t4do7hp.apps.googleusercontent.com&approval_prompt=force">Login with Gmail</a>
+                                    <a href="forgotPassword">Forgot Password?</a>
                                 </div>
                             </form>
                         </div>
