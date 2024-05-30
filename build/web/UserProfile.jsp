@@ -263,42 +263,47 @@
         <!-- End banner Area -->
 
         <!--================User Profile Area =================-->
-        <section class="profile_box_area section_gap">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="profile_form_inner">
-                            <h3 class="mb-4 text-center">User Profile</h3>
-                            <div class="profile_img text-center mb-4">
-                                <img src="img/profile.jpg" alt="User Profile Image" class="img-fluid rounded-circle">
-                            </div>
-                            <form class="row profile_form" action="profile_update.php" method="post" id="profileForm" novalidate="novalidate">
-                                <div class="col-md-12 form-group">
-                                    <label for="username">Họ và tên</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Họ và tên" value="John Doe" readonly>
+         <section class="profile_box_area section_gap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" id="UserProfile">
+                    <div class="profile_form_inner">
+                        <h3 class="mb-4 text-center">User Profiles</h3>
+                        <c:choose>
+                            <c:when test="${empty userProfiles}">
+                                <p>No user profiles found.</p>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="userProfile" items="${userProfiles}">
+                                    <form class="row profile_form" action="UserProfile.jsp" method="get" id="profileForm" novalidate="novalidate">
+                                        <div class="col-md-12 form-group">
+                                            <label for="username">Họ và tên</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Họ và tên" value="${userProfile.firstName} ${userProfile.lastName}" readonly>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="${userProfile.gmail}" readonly>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label for="dob">Ngày sinh</label>
+                                            <input type="text" class="form-control" id="dob" name="dob" placeholder="Ngày sinh" value="${userProfile.dob}" readonly>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label for="address">Địa chỉ</label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" value="${userProfile.description}, ${userProfile.commune}, ${userProfile.district}, ${userProfile.city}" readonly>
+                                        </div>
+                                        </c:forEach>
+                                        </c:otherwise>
+                                        </c:choose>
+                                        <div class="col-md-12 form-group text-center">
+                                       <button><a class="nav-link" href="UpdateProfile.jsp">Edit Profile</a></button>
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="john.doe@example.com" readonly>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" value="123-456-7890" readonly>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" value="123 Main St, Anytown, USA" readonly>
-                                </div>
-                                <div class="col-md-12 form-group text-center">
-                                    <button type="button" class="primary-btn" id="editBtn" onclick="enableEdit()">Edit Profile</button>
-                                    <button type="submit" class="primary-btn" id="saveBtn" style="display:none;">Save Changes</button>
-                                </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
         <!--================End User Profile Area =================-->
 
         <!-- start footer Area -->
