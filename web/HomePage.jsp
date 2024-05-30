@@ -110,7 +110,7 @@
                                        aria-expanded="false">Category</a>
                                     <ul class="dropdown-menu">
                                         <c:forEach items="${listC}" var="c">
-                                            <li class="nav-item"><a class="nav-link" href="${c.name}List.jsp">${c.name}</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/Electronic_Shopping/${c.name.toLowerCase()}list#">${c.name}</a></li>
                                             </c:forEach>
                                     </ul>
                                 </li>
@@ -127,7 +127,7 @@
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+                                <li class="nav-item"><a href="ShoppingCart.jsp" class="cart"><span class="ti-bag"></span></a></li>
                             </ul>
 
                             <div class="col-md-6">
@@ -243,7 +243,7 @@
                     <div class="col-lg-8 col-md-12">
                         <div class="row">
                             <div class="col-lg-8 col-md-8">
-                                <div class="single-deal" onclick="location.href = 'PhoneList.jsp'">
+                                <div class="single-deal" onclick="location.href = '/Electronic_Shopping/phonelist'">
                                     <div class="overlay"></div>
                                     <img class="img-fluid w-100" src="img/category/c1.jpeg" alt="">
                                     <div class="deal-details">
@@ -253,7 +253,7 @@
                             </div>
 
                             <div class="col-lg-4 col-md-4">
-                                <div class="single-deal" onclick="location.href = 'TableList.jsp'">
+                                <div class="single-deal" onclick="location.href = '/Electronic_Shopping/tabletlist'">
                                     <div class="overlay"></div>
                                     <img class="img-fluid w-100" src="img/category/tablet.jpg" alt="">
                                     <div class="deal-details">
@@ -262,7 +262,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
-                                <div class="single-deal" onclick="location.href = 'AccesoriesList.jsp'">
+                                <div class="single-deal" onclick="location.href = '/Electronic_Shopping/accessorieslist'">
                                     <div class="overlay"></div>
                                     <img class="img-fluid w-100" src="img/category/accesory.png" alt="">
                                     <div class="deal-details">
@@ -271,7 +271,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8">
-                                <div class="single-deal" onclick="location.href = 'LaptopList.jsp'">
+                                <div class="single-deal" onclick="location.href = '/Electronic_Shopping/laptoplist'">
                                     <div class="overlay"></div>
                                     <img class="img-fluid w-100" src="img/category/laptop.png" alt="">
                                     <div class="deal-details">
@@ -316,9 +316,9 @@
                         <c:forEach items="${listA}" var="a">
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-product">
-                                    <img class="img-fluid" src="${a.url_img1}" alt="">
+                                    <a href="ProductDetail.jsp"><img class="img-fluid" src="${a.url_img1}" alt=""></a>
                                     <div class="product-details">
-                                        <h6>${a.name}</h6>
+                                        <a href="ProductDetail.jsp"><h6>${a.name}</h6></a>
                                         <div class="price">
                                             <h6>${a.formattedPrice}</h6>
                                         </div>
@@ -326,9 +326,10 @@
 
                                             <a href="" class="social-info">
                                                 <span class="ti-bag"></span>
-                                                <p class="hover-text">add to bag</p>
+                                                <p class="hover-text">add to cart</p>
                                             </a>
-                                            <a href="" class="social-info">
+
+                                            <a href="ProductDetail.jsp" class="social-info">
                                                 <span class="lnr lnr-move"></span>
                                                 <p class="hover-text">view more</p>
                                             </a>
@@ -360,7 +361,7 @@
                                 <div class="single-product">
                                     <img class="img-fluid" src="${s.url_img1}" alt="">
                                     <div class="product-details">
-                                        <h6>${s.name}</h6>
+                                        <a href="ProductDetail.jsp"><h6>${s.name}</h6></a>
                                         <div class="price">
                                             <h6>${s.formattedPrice}</h6>
                                         </div>

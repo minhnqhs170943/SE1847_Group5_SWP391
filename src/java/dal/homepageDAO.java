@@ -129,5 +129,41 @@ public class homepageDAO extends DBContext {
         return list;
 
     }
+    
+    //search theo ten
+    public List<product> searchByName(String name) {
+        List<product> list = new ArrayList<>();
+        String sql = "select * from product where name like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + name + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                list.add(new product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(5),
+                        rs.getDate(4),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11)));
+            }
 
+        } catch (SQLException e) {
+        }
+
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        homepageDAO dao = new homepageDAO();
+        List<product> list = dao.searchByName("iphone");
+        for (product p: list) {
+            System.out.println(p);
+        }
+    }
+    
 }

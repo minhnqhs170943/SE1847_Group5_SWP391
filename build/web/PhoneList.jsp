@@ -303,47 +303,30 @@
                     <section class="lattest-product-area pb-40 category-list">
                         <div class="row">
                             <!-- single product -->
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-      <c:forEach items="${phoneList}" var="phone">
-    <div class="col-lg-4 col-md-6">
-        <div class="single-product">
-            <img class="img-fluid" src="${phone.url_img1}" alt="">
-            <div class="product-details">
-                <h6>${phone.name}</h6>
-                <div class="price">
-                    <h6>${phone.brandID}</h6>
-                    <p>${phone.price}</p> 
-                </div>
-                <div class="prd-bottom">
-                    <a href="" class="social-info">
-                        <span class="ti-bag"></span>
-                        <p class="hover-text">cart</p>
-                    </a>
-                    <a href="" class="social-info">
-                        <span class="lnr lnr-move"></span>
-                        <p class="hover-text">detail</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</c:forEach>
-
-                            
-                            
-                            
-                            
-                            
-                            
-                           
+                            <c:forEach items="${phoneList}" var="o">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="single-product">
+                                        <img class="img-fluid" src="${o.url_img1}" alt="">
+                                        <div class="product-details">
+                                            <h6>${o.name}</h6>
+                                            <div class="price">
+                                                <h6>${o.brandID}</h6>
+                                                <p>${o.price}</p> 
+                                            </div>
+                                            <div class="prd-bottom">
+                                                <a href="" class="social-info">
+                                                    <span class="ti-bag"></span>
+                                                    <p class="hover-text">cart</p>
+                                                </a>
+                                                <a href="" class="social-info">
+                                                    <span class="lnr lnr-move"></span>
+                                                    <p class="hover-text">detail</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
                     </section>
                     <!-- End Best Seller -->
