@@ -113,7 +113,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Account</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
                                         <li class="nav-item"><a class="nav-link" href="tracking.html">User Profile</a></li>
                                         <li class="nav-item"><a class="nav-link" href="elements.html">Change Password</a></li>
                                     </ul>
@@ -195,7 +195,7 @@
         <!--================Change Password =================-->
         <div class="container-change">
             <h2>Change Password</h2>
-            <form id="changePasswordForm">
+            <form id="changePasswordForm" action="changePassword" method="POST">
                 <label for="currentPassword">Current Password</label>
                 <input type="password" id="currentPassword" name="currentPassword" required>
                 <label for="newPassword">New Password</label>

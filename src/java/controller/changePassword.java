@@ -2,49 +2,100 @@ import dal.DBContext;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/changePassword")  
-public class changePassword extends HttpServlet {
+@WebServlet("/changePassword")
+public class ChangePasswordServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve the new password from the request parameter
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
-        
-        // Get a connection to the database using DBContext
+        String confirmPassword = request.getParameter("confirmPassword");
+
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username"); // Assume username is stored in session
+
+        if (username == null || username.isEmpty()) {
+            response.sendRedirect("Login.jsp"); // Redirect to login if user is not authenticated
+            return;
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            request.setAttribute("errorMessage", "New password and confirm password do not match!");
+            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+            return;
+        }
+
         try (Connection connection = new DBContext().getConnection()) {
-            // Prepare SQL statement to update the password
-            String sql = "UPDATE users SET password = ? WHERE username = ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                // Set parameters for the SQL statement
-                statement.setString(1, newPassword);
-                statement.setString(2, getUsernameFromSession(request)); // Get the username from session or wherever it's stored
-                
-                // Execute the SQL statement
-                int rowsAffected = statement.executeUpdate();
-                
-                if (rowsAffected > 0) {
-                    // Password successfully updated, redirect to a success page
-                    response.sendRedirect("passwordChanged.jsp");
-                } else {
-                    // Handle the case where no rows were affected (e.g., username not found)
-                    response.sendRedirect("error.jsp");
+            // Check current password
+            String checkPasswordSql = "SELECT password FROM account WHERE username = ?";
+            try (PreparedStatement checkPasswordStmt = connection.prepareStatement(checkPasswordSql)) {
+                checkPasswordStmt.setString(1, username);
+                try (ResultSet rs = checkPasswordStmt.executeQuery()) {
+                    if (rs.next()) {
+                        String storedPassword = rs.getString("password");
+                        // Debug statements to log passwords
+                        System.out.println("Stored Password: " + storedPassword);
+                        System.out.println("Current Password: " + currentPassword);
+
+                        if (!storedPassword.equals(currentPassword)) {
+                            request.setAttribute("errorMessage", "Current password is incorrect!");
+                            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+                            return;
+                        }
+                    } else {
+                        request.setAttribute("errorMessage", "User not found!");
+                        request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+                        return;
+                    }
                 }
             }
+
+            // Update password
+            String updatePasswordSql = "UPDATE account SET password = ? WHERE username = ?";
+            try (PreparedStatement updatePasswordStmt = connection.prepareStatement(updatePasswordSql)) {
+                updatePasswordStmt.setString(1, newPassword);
+                updatePasswordStmt.setString(2, username);
+
+                int rowsAffected = updatePasswordStmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    request.setAttribute("successMessage", "Password changed successfully!");
+                    request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("errorMessage", "Failed to change password!");
+                    request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
+                }
+            }
+
         } catch (SQLException ex) {
-            // Handle database connection or SQL errors
             ex.printStackTrace();
-            response.sendRedirect("error.jsp");
+            request.setAttribute("errorMessage", "An error occurred. Please try again later.");
+            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
         }
     }
-    
-    // Dummy method to get username from session (replace with actual logic)
-    private String getUsernameFromSession(HttpServletRequest request) {
-        return "John Doe"; // Placeholder, replace with actual logic
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Change Password Servlet";
     }
 }
